@@ -1,0 +1,1 @@
+export { PublicacionPage } from "./PublicacionPage.jsx";

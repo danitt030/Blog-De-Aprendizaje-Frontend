@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #6C4AB6; /* Morado */
+    color: white;
+    width: 100%;
+}
+
+.navbar-logo img {
+    height: 50px;
+    width: auto;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px; /* Tamaño mayor */
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #FFCC00;
+}
+
+.navbar-title {
+    font-size: 24px; /* Tamaño mayor */
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    flex-grow: 1; /* Para centrar el título */
+}
