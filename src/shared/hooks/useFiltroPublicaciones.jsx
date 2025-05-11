@@ -11,7 +11,6 @@ export const useFiltroPublicaciones = () => {
     const [publicaciones, setPublicaciones] = useState([]);
     const [cargando, setCargando] = useState(false);
 
-    // Cargar todas las publicaciones al inicio
     useEffect(() => {
         const cargarPublicaciones = async () => {
             setCargando(true);

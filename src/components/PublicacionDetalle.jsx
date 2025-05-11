@@ -20,18 +20,15 @@ export const PublicacionDetalle = () => {
         setFormError("");
 
         try {
-            // Enviar el comentario al backend
             const nuevoComentario = await agregarComentario({
                 publicacionId: id,
                 ...comentario,
             });
 
-            // Normaliza el comentario si es necesario
             const comentarioParaLista = {
                 _id: nuevoComentario._id,
                 usuario: nuevoComentario.usuario,
                 contenidoComentario: nuevoComentario.contenidoComentario,
-                // Si tu backend devuelve más campos, agrégalos aquí
             };
 
             if (typeof setComentarios === "function") {
@@ -51,41 +48,54 @@ export const PublicacionDetalle = () => {
 
     return (
         <div className="publicacion-detalle">
-            <h2>{publicacion.tituloPublicacion}</h2>
-            <p>{publicacion.descripcionPublicacion}</p>
-            <p><strong>Curso:</strong> {publicacion.cursoPublicacion}</p>
-            <p><strong>Fecha:</strong> {new Date(publicacion.fechaPublicacion).toLocaleDateString()}</p>
-            <h3>Comentarios:</h3>
-            <ul>
+            <div className="publicacion-card detalle-publicacion-card">
+                <h2>{publicacion.tituloPublicacion}</h2>
+                <p>{publicacion.descripcionPublicacion}</p>
+                <div className="detalle-info">
+                    <p><strong>Curso:</strong> {publicacion.cursoPublicacion}</p>
+                    <p><strong>Fecha:</strong> {new Date(publicacion.fechaPublicacion).toLocaleDateString()}</p>
+                    <p><strong>Comentarios:</strong></p>
+                </div>
+            </div>
+            <div className="comentarios-grid">
                 {comentarios.map((comentario) => (
-                    <li key={comentario._id || Math.random()}>
-                        <strong>{comentario.usuario}:</strong> {comentario.contenidoComentario}
-                         {comentario.createdAt && (
-                            <div style={{ fontSize: "0.85em", color: "#888" }}>
+                    <div className="comentario-card" key={comentario._id || Math.random()}>
+                        <div className="comentario-usuario">{comentario.usuario}</div>
+                        {comentario.createdAt && (
+                            <div className="comentario-fecha">
                                 Fecha: {new Date(comentario.createdAt).toLocaleString()}
                             </div>
                         )}
-                    </li>
+                        <div>{comentario.contenidoComentario}</div>
+                    </div>
                 ))}
-            </ul>
-            <form className="comentario-form" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Tu nombre"
-                    value={comentario.usuario}
-                    onChange={(e) => setComentario({ ...comentario, usuario: e.target.value })}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Tu comentario"
-                    value={comentario.contenidoComentario}
-                    onChange={(e) => setComentario({ ...comentario, contenidoComentario: e.target.value })}
-                    required
-                />
-                <button type="submit">Agregar Comentario</button>
-                {formError && <span className="error">{formError}</span>}
-            </form>
+            </div>
+            <div className="comentario-form-card">
+                <form className="comentario-form" onSubmit={handleSubmit}>
+                    <label>
+                        Usuario
+                        <input
+                            type="text"
+                            placeholder="Tu nombre"
+                            value={comentario.usuario}
+                            onChange={(e) => setComentario({ ...comentario, usuario: e.target.value })}
+                            required
+                        />
+                    </label>
+                    <label>
+                        ¿Que Quieres Comentar?
+                        <input
+                            type="text"
+                            placeholder="Tu comentario"
+                            value={comentario.contenidoComentario}
+                            onChange={(e) => setComentario({ ...comentario, contenidoComentario: e.target.value })}
+                            required
+                        />
+                    </label>
+                    <button type="submit">Agregar Comentario</button>
+                    {formError && <span className="error">{formError}</span>}
+                </form>
+            </div>
         </div>
     );
 };

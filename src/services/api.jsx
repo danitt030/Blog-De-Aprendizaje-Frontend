@@ -13,14 +13,13 @@ export const listarPublicaciones = async () => {
     return res.data.publicaciones;
 };
 
-// Nueva función para obtener una publicación por ID
 export const listarPublicacionPorID = async (id) => {
-    const res = await API.get(`/Publicacion/listarPublicaciones/${id}`); // Ruta corregida
+    const res = await API.get(`/Publicacion/listarPublicaciones/${id}`); 
     return res.data.publicacion;
 };
 
 export const agregarComentario = async (comentario) => {
-    const res = await API.post('/Comentario/agregarComentarios', comentario); // <-- aquí la S
+    const res = await API.post('/Comentario/agregarComentarios', comentario); 
     return res.data.comentario;
 };
 

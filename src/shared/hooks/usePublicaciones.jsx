@@ -10,7 +10,7 @@ export const usePublicaciones = () => {
         setCargando(true);
         try {
             const publicaciones = await listarPublicacionesService();
-            setPublicaciones(publicaciones); // Ya es un array
+            setPublicaciones(publicaciones);
             setCargando(false);
         } catch (err) {
             toast.error("Error al cargar las publicaciones" + err.message);

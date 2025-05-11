@@ -14,7 +14,7 @@ export const PublicacionesForm = ({ publicaciones }) => {
                 <div
                     key={pub._id}
                     className="publicacion-card"
-                    onClick={() => navigate(`/publicacion/${pub._id}`)} // Navega a la página de detalles
+                    onClick={() => navigate(`/publicacion/${pub._id}`)} 
                     style={{ cursor: "pointer" }}
                 >
                     <h3 className="publicacion-title">{pub.tituloPublicacion}</h3>
